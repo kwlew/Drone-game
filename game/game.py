@@ -11,11 +11,9 @@ def run():
     ).convert_alpha()
 
     player_pos = pygame.Vector2(
-        settings.width // 2-100,
-        settings.height // 2-100
+        settings.width // 2 - 100,
+        settings.height // 2 - 100
     )
-
-    move_speed = 450
 
     while running:
         surface = pygame.display.get_surface()
@@ -29,38 +27,16 @@ def run():
         surface.blit(drone_img, player_pos)
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_w] and keys[pygame.K_a]:
-            player_pos.y -= (move_speed * dt)* 0.707
-            player_pos.x -= (move_speed * dt) * 0.707
-        if keys[pygame.K_w] and keys[pygame.K_d]:
-            player_pos.y -= (move_speed * dt)* 0.707
-            player_pos.x += (move_speed * dt) * 0.707
-        if keys[pygame.K_s] and keys[pygame.K_d]:
-            player_pos.y += (move_speed * dt)* 0.707
-            player_pos.x += (move_speed * dt) * 0.707
-        if keys[pygame.K_s] and keys[pygame.K_a]:
-            player_pos.y += (move_speed * dt)* 0.707
-            player_pos.x -= (move_speed * dt) * 0.707
-        if keys[pygame.K_w] and not keys[pygame.K_d] and not keys[pygame.K_a]:
-            player_pos.y -= move_speed * dt
-        if keys[pygame.K_s] and not keys[pygame.K_a] and not keys[pygame.K_d]:
-            player_pos.y += move_speed * dt
-        if keys[pygame.K_a] and not keys[pygame.K_w] and not keys[pygame.K_s]:
-            player_pos.x -= move_speed * dt
-        if keys[pygame.K_d] and not keys[pygame.K_w] and not keys[pygame.K_s]:
-            player_pos.x += move_speed * dt
-        
-        print(player_pos.x)
-        print(player_pos.y)
+        if keys[pygame.K_w]:
+            player_pos.y -= 300 * dt
+        if keys[pygame.K_s]:
+            player_pos.y += 300 * dt
+        if keys[pygame.K_a]:
+            player_pos.x -= 300 * dt
+        if keys[pygame.K_d]:
+            player_pos.x += 300 * dt
+
                 
-        if player_pos.x > settings.width:
-            player_pos.x = (player_pos.x-settings.width-200)
-        if player_pos.x < 0-200:
-            player_pos.x = (player_pos.x+settings.width+200)
-        if player_pos.y < 0:
-            player_pos.y = (player_pos.y+settings.height+200)
-        if player_pos.y > settings.height:
-            player_pos.y = (player_pos.y-settings.height-200)
 
         pygame.display.flip()
 

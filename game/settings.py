@@ -8,9 +8,9 @@ SETTINGS_FILE = os.path.join(DATA_DIR, 'settings.json')
 
 class Settings:
     def __init__(self):
-        self.width = 1680
-        self.height = 1080
-        self.fullscreen = True
+        self.width = 1280
+        self.height = 720
+        self.fullscreen = False
         self.surface = None
 
     def load(self):
@@ -25,6 +25,7 @@ class Settings:
         self.fullscreen = data.get('fullscreen', self.fullscreen)
 
     def save(self):
+        # 🔹 Ensure data folder exists
         os.makedirs(DATA_DIR, exist_ok=True)
 
         with open(SETTINGS_FILE, 'w') as f:
